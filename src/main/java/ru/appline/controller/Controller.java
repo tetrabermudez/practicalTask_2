@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.appline.logic.Pet;
 import ru.appline.logic.PetModel;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,10 +15,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Controller {
     private static final PetModel petModel = PetModel.getInstance();
     private static final AtomicInteger newId = new AtomicInteger(1);
+    private static final Map<String, String> message = new HashMap<>();
 
     @PostMapping(value = "/createPet", consumes = "application/json")
-    public void createPet(@RequestBody Pet pet) {
+    public Map<String, String> createPet(@RequestBody Pet pet) {
         petModel.add(pet, newId.getAndIncrement());
+        message.put("Message: ", pet.toString() + " was successfully created");
+        return message;
     }
 
     @GetMapping(value = "/getAll", produces = "application/json")
