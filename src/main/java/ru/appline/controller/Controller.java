@@ -1,9 +1,6 @@
 package ru.appline.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.appline.logic.Pet;
 import ru.appline.logic.PetModel;
 
@@ -17,7 +14,7 @@ public class Controller {
     private static final AtomicInteger newId = new AtomicInteger(1);
     private static final Map<String, String> message = new HashMap<>();
 
-    @PostMapping(value = "/createPet", consumes = "application/json")
+    @PostMapping(value = "/createPet", consumes = "application/json", produces = "application/json")
     public Map<String, String> createPet(@RequestBody Pet pet) {
         petModel.add(pet, newId.getAndIncrement());
         message.put("Message: ", pet.toString() + " was successfully created");
@@ -32,6 +29,11 @@ public class Controller {
     @GetMapping(value = "/getPet", consumes = "application/json", produces = "application/json")
     public Pet getPet(@RequestBody Map<String, Integer> id) {
         return petModel.getFromList(id.get("id"));
+    }
+
+    @DeleteMapping(value = "/deletePet", consumes = "application/json")
+    public void deletePetById(@RequestBody Map<String, Integer> id) {
+        petModel.delete(id.get("id"));
     }
 
 }

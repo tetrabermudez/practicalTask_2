@@ -28,4 +28,8 @@ public class PetModel implements Serializable {
     public Map<Integer, Pet> getAll() {
         return model;
     }
+
+    public void delete(int id) {
+        model.remove(id);
+    }
 }
