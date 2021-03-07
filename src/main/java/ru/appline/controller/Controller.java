@@ -16,7 +16,9 @@ public class Controller {
 
     @PostMapping(value = "/createPet", consumes = "application/json", produces = "application/json")
     public Map<String, String> createPet(@RequestBody Pet pet) {
-        petModel.add(pet, newId.getAndIncrement());
+        int id = newId.getAndIncrement();
+        petModel.add(pet, id);
+        pet.setId(id);
         message.put("Message: ", pet.toString() + " was successfully created");
         return message;
     }
@@ -36,4 +38,11 @@ public class Controller {
         petModel.delete(id.get("id"));
     }
 
+    @PutMapping(value = "/updatePet", consumes = "application/json", produces = "application/json")
+    public void updatePet(@RequestBody Pet pet) {
+        Pet newPet = petModel.getFromList(pet.getId());
+        newPet.setName(pet.getName());
+        newPet.setType(pet.getType());
+        newPet.setAge(pet.getAge());
+    }
 }

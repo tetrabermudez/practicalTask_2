@@ -32,4 +32,11 @@ public class PetModel implements Serializable {
     public void delete(int id) {
         model.remove(id);
     }
+
+    public void update(Pet newPet, int id) {
+        Pet pet = getFromList(id);
+        pet.setName(newPet.getName());
+        pet.setType(newPet.getType());
+        pet.setAge(newPet.getAge());
+    }
 }

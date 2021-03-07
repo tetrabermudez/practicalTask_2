@@ -4,6 +4,7 @@ public class Pet {
     private String name;
     private String type;
     private int age;
+    private int id;
 
     public Pet() {
         super();
@@ -13,6 +14,21 @@ public class Pet {
         this.name = name;
         this.type = type;
         this.age = age;
+    }
+
+    public Pet(String name, String type, int age, int id) {
+        this.name = name;
+        this.type = type;
+        this.age = age;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
