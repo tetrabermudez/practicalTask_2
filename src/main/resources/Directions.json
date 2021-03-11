@@ -1,0 +1,34 @@
+[
+  {"name": "North",
+    "low": 0,
+    "high": 1
+  },
+  {"name": "North-East",
+    "low": 1,
+    "high": 90
+  },
+  {"name": "East",
+    "low": 90,
+    "high": 91
+  },
+  {"name": "South-East",
+    "low": 91,
+    "high": 180
+  },
+  {"name": "South",
+    "low": 180,
+    "high": 181
+  },
+  {"name": "South-West",
+    "low": 181,
+    "high": 270
+  },
+  {"name": "West",
+    "low": 270,
+    "high": 271
+  },
+  {"name": "North-West",
+    "low": 271,
+    "high": 360
+  }
+]
